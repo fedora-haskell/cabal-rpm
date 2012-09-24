@@ -1,7 +1,7 @@
 # https://fedoraproject.org/wiki/PackagingDrafts/Haskell
 
 Name:           cabal-rpm
-Version:        0.6.2
+Version:        0.6.3
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
@@ -21,6 +21,7 @@ BuildRequires:  ghc-process-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-unix-devel
 # End cabal-rpm deps
+Obsoletes:      cabal2spec < 0.26
 
 %description
 This package generates RPM spec files from Haskell Cabal packages.
@@ -37,14 +38,21 @@ This package generates RPM spec files from Haskell Cabal packages.
 %install
 %ghc_bin_install
 
+install -p -m 0644 -D man/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+
 
 %files
 %doc COPYING
 %doc README.md
 %{_bindir}/%{name}
+%{_mandir}/man1/cabal-rpm.1*
 
 
 %changelog
+* Mon Sep 24 2012 Jens Petersen <petersen@redhat.com> - 0.6.3-1
+- can now handle tarball
+- new manpage
+
 * Mon Sep 10 2012 Jens Petersen <petersen@redhat.com> - 0.6.2-1
 - shorten description
 
