@@ -1,7 +1,8 @@
+# https://fedoraproject.org/wiki/Packaging:Haskell
 # https://fedoraproject.org/wiki/PackagingDrafts/Haskell
 
 Name:           cabal-rpm
-Version:        0.6.4
+Version:        0.6.5
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
@@ -12,8 +13,6 @@ Source0:        http://hackage.haskell.org/packages/archive/%{name}/%{version}/%
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
-BuildRequires:  ghc-Cabal-devel > 1.10
-BuildRequires:  ghc-base-devel < 5
 BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
 BuildRequires:  ghc-old-locale-devel
@@ -51,6 +50,13 @@ install -p -m 0644 -D man/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
 
 %changelog
+* Thu Nov  1 2012 Jens Petersen <petersen@redhat.com> - 0.6.5-1
+- drop hscolour BuildRequires
+- simplify generated BuildRequires: drop version ranges,
+  and exclude base, Cabal, etc
+- use ExclusiveArch ghc_arches_with_ghci for template-haskell
+- replace --name option with --library to force Lib package
+
 * Tue Sep 25 2012 Jens Petersen <petersen@redhat.com> - 0.6.4-1
 - add cabal-rpm-diff wrapper script
 - fix generated manpage
