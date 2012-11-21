@@ -2,7 +2,7 @@
 # https://fedoraproject.org/wiki/PackagingDrafts/Haskell
 
 Name:           cabal-rpm
-Version:        0.6.5
+Version:        0.6.6
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
@@ -40,16 +40,28 @@ This package generates RPM spec files from Haskell Cabal packages.
 install -p %{name}-diff %{buildroot}%{_bindir}
 install -p -m 0644 -D man/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
+ln -s %{name} %{buildroot}%{_bindir}/cblrpm
+ln -s %{name}-diff %{buildroot}%{_bindir}/cblrpm-diff
+
 
 %files
 %doc COPYING
 %doc README.md
 %{_bindir}/%{name}
+%{_bindir}/cblrpm
 %{_bindir}/%{name}-diff
+%{_bindir}/cblrpm-diff
 %{_mandir}/man1/cabal-rpm.1*
 
 
 %changelog
+* Wed Nov 21 2012 Jens Petersen <petersen@redhat.com> - 0.6.6-1
+- now generates dependencies for C libs, buildtools, and pkgconfig depends
+- add short cblrpm and cblrpm-diff alias symlinks
+- fix handling of LGPL-2.1 license
+- change backup suffix from .cabal-rpm to .cblrpm
+- do not mistake non-existent tarballs for package names
+
 * Thu Nov  1 2012 Jens Petersen <petersen@redhat.com> - 0.6.5-1
 - drop hscolour BuildRequires
 - simplify generated BuildRequires: drop version ranges,
