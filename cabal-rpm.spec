@@ -2,14 +2,14 @@
 # https://fedoraproject.org/wiki/PackagingDrafts/Haskell
 
 Name:           cabal-rpm
-Version:        0.6.6
+Version:        0.7.0
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
 License:        GPLv3+
 URL:            http://hackage.haskell.org/package/%{name}
 Source0:        http://hackage.haskell.org/packages/archive/%{name}/%{version}/%{name}-%{version}.tar.gz
-
+Source1:        cabal-rpm.1
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
@@ -23,7 +23,7 @@ BuildRequires:  ghc-unix-devel
 Obsoletes:      cabal2spec < 0.26
 
 %description
-This package generates RPM spec files from Haskell Cabal packages.
+Cabal-rpm generates RPM packages from Haskell Cabal packages.
 
 
 %prep
@@ -37,24 +37,33 @@ This package generates RPM spec files from Haskell Cabal packages.
 %install
 %ghc_bin_install
 
-install -p %{name}-diff %{buildroot}%{_bindir}
-install -p -m 0644 -D man/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+install -p cblrpm-diff %{buildroot}%{_bindir}
+install -p -m 0644 -D man/cblrpm.1 %{buildroot}%{_mandir}/man1/cblrpm.1
+install -p -m 0644 %SOURCE1 %{buildroot}%{_mandir}/man1/
 
-ln -s %{name} %{buildroot}%{_bindir}/cblrpm
-ln -s %{name}-diff %{buildroot}%{_bindir}/cblrpm-diff
+ln -s cblrpm %{buildroot}%{_bindir}/%{name}
+ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %files
 %doc COPYING
+%doc NEWS
 %doc README.md
 %{_bindir}/%{name}
 %{_bindir}/cblrpm
 %{_bindir}/%{name}-diff
 %{_bindir}/cblrpm-diff
 %{_mandir}/man1/cabal-rpm.1*
+%{_mandir}/man1/cblrpm.1*
 
 
 %changelog
+* Tue Jan 22 2013 Jens Petersen <petersen@redhat.com> - 0.7.0-1
+- cabal-rpm and cabal-rpm-diff are now symlinks to cblrpm and cblrpm-diff
+- now uses command args, initially spec, srpm, and build
+- tries to sudo yum install dependencies
+- https://github.com/juhp/cabal-rpm/blob/master/NEWS
+
 * Wed Nov 21 2012 Jens Petersen <petersen@redhat.com> - 0.6.6-1
 - now generates dependencies for C libs, buildtools, and pkgconfig depends
 - add short cblrpm and cblrpm-diff alias symlinks
