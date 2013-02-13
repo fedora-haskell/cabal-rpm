@@ -3,7 +3,7 @@
 
 Name:           cabal-rpm
 Version:        0.7.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
 License:        GPLv3+
@@ -58,6 +58,9 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.7.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Tue Jan 22 2013 Jens Petersen <petersen@redhat.com> - 0.7.0-1
 - cabal-rpm and cabal-rpm-diff are now symlinks to cblrpm and cblrpm-diff
 - now uses command args, initially spec, srpm, and build
