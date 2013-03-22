@@ -2,8 +2,8 @@
 # https://fedoraproject.org/wiki/PackagingDrafts/Haskell
 
 Name:           cabal-rpm
-Version:        0.7.0
-Release:        2%{?dist}
+Version:        0.7.1
+Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
 License:        GPLv3+
@@ -21,6 +21,7 @@ BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-unix-devel
 # End cabal-rpm deps
 Obsoletes:      cabal2spec < 0.26
+Provides:       cblrpm = %{version}
 
 %description
 Cabal-rpm generates RPM packages from Haskell Cabal packages.
@@ -58,6 +59,16 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Fri Mar 22 2013 Jens Petersen <petersen@redhat.com> - 0.7.1-1
+- add final full-stop to description if missing
+- add ver-rel to initial changelog entry
+- output warning when .spec already exists
+- fix handling of package names that end in a digit
+- output when trying a path
+- map curl C dep to libcurl
+- fix use of cblrpm-diff force lib option
+- provide cblrpm
+
 * Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.7.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
