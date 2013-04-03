@@ -3,7 +3,7 @@
 
 Name:           cabal-rpm
 Version:        0.7.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
 License:        GPLv3+
@@ -22,6 +22,7 @@ BuildRequires:  ghc-unix-devel
 # End cabal-rpm deps
 Obsoletes:      cabal2spec < 0.26
 Provides:       cblrpm = %{version}
+Requires:       cabal-install
 
 %description
 Cabal-rpm generates RPM packages from Haskell Cabal packages.
@@ -59,6 +60,9 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Wed Apr  3 2013 Jens Petersen <petersen@redhat.com> - 0.7.1-2
+- better require cabal-install
+
 * Fri Mar 22 2013 Jens Petersen <petersen@redhat.com> - 0.7.1-1
 - add final full-stop to description if missing
 - add ver-rel to initial changelog entry
