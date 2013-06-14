@@ -1,8 +1,7 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
-# https://fedoraproject.org/wiki/PackagingDrafts/Haskell
 
 Name:           cabal-rpm
-Version:        0.8.0
+Version:        0.8.1
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
@@ -60,6 +59,11 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Fri Jun 14 2013 Jens Petersen <petersen@redhat.com> - 0.8.1-1
+- word wrapping of descriptions
+- use generic description for shared subpackage
+- simplify logic for summary and description processing
+
 * Fri May 31 2013 Jens Petersen <petersen@redhat.com> - 0.8.0-1
 - use simplified Fedora Haskell Packaging macros approved by
   Fedora Packaging Committee (https://fedorahosted.org/fpc/ticket/194)
