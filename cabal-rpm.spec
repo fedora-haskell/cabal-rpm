@@ -2,7 +2,7 @@
 
 Name:           cabal-rpm
 Version:        0.8.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
 License:        GPLv3+
@@ -59,6 +59,9 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Fri Jun 21 2013 Jens Petersen <petersen@redhat.com> - 0.8.1-2
+- rebuild
+
 * Fri Jun 14 2013 Jens Petersen <petersen@redhat.com> - 0.8.1-1
 - word wrapping of descriptions
 - use generic description for shared subpackage
