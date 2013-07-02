@@ -16,6 +16,7 @@ BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
 BuildRequires:  ghc-old-locale-devel
 BuildRequires:  ghc-process-devel
+BuildRequires:  ghc-regex-compat-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-unix-devel
 # End cabal-rpm deps
@@ -27,6 +28,7 @@ Requires:       rpm-build
 %description
 Cabal-rpm generates RPM packages from Haskell Cabal packages.
 
+See <https://github.com/juhp/cabal-rpm/blob/master/NEWS> for latest changes.
 
 %prep
 %setup -q
