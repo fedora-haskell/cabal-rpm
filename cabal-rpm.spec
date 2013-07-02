@@ -1,8 +1,8 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
 Name:           cabal-rpm
-Version:        0.8.1
-Release:        2%{?dist}
+Version:        0.8.2
+Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
 License:        GPLv3+
@@ -22,6 +22,7 @@ BuildRequires:  ghc-unix-devel
 Obsoletes:      cabal2spec < 0.26
 Provides:       cblrpm = %{version}
 Requires:       cabal-install
+Requires:       rpm-build
 
 %description
 Cabal-rpm generates RPM packages from Haskell Cabal packages.
@@ -59,6 +60,15 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Tue Jul  2 2013 Jens Petersen <petersen@redhat.com> - 0.8.2-1
+- handle pkg-ver arg, and check cabal list is non-empty
+- sort all generated deps
+- use yum-builddep again to install deps
+- copy tarball into cwd for rpmbuild
+- wrap after end of sentence near end of line
+- use _isa in requires ghc-<pkg>
+- require rpm-build
+
 * Fri Jun 21 2013 Jens Petersen <petersen@redhat.com> - 0.8.1-2
 - rebuild
 
