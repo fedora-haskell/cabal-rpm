@@ -1,7 +1,7 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
 Name:           cabal-rpm
-Version:        0.8.2
+Version:        0.8.3
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
@@ -62,6 +62,13 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Fri Jul 12 2013 Jens Petersen <petersen@redhat.com> - 0.8.3-1
+- only try to install missing dependencies
+- word-wrap generic descriptions
+- now handles ghc_fix_dynamic_rpath for executables depending on own lib
+- map ffi to libffi
+- source module rearrangements
+
 * Tue Jul  2 2013 Jens Petersen <petersen@redhat.com> - 0.8.2-1
 - handle pkg-ver arg, and check cabal list is non-empty
 - sort all generated deps
