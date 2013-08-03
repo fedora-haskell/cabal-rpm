@@ -2,7 +2,7 @@
 
 Name:           cabal-rpm
 Version:        0.8.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
 License:        GPLv3+
@@ -62,6 +62,9 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Fri Jul 12 2013 Jens Petersen <petersen@redhat.com> - 0.8.3-1
 - only try to install missing dependencies
 - word-wrap generic descriptions
