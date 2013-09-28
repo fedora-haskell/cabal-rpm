@@ -1,8 +1,8 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
 Name:           cabal-rpm
-Version:        0.8.3
-Release:        2%{?dist}
+Version:        0.8.4
+Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
 License:        GPLv3+
@@ -21,9 +21,11 @@ BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-unix-devel
 # End cabal-rpm deps
 Obsoletes:      cabal2spec < 0.26
-Provides:       cblrpm = %{version}
+Provides:       cblrpm = %{version}-%{release}
 Requires:       cabal-install
 Requires:       rpm-build
+# for repoquery
+Requires:       yum-utils
 
 %description
 Cabal-rpm generates RPM packages from Haskell Cabal packages.
@@ -62,6 +64,15 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Sat Sep 28 2013 Jens Petersen <petersen@redhat.com> - 0.8.4-1
+- use repoquery to determine extra C library dependencies
+- quote "pkgconfig(foo)" for rpm query and yum install
+- show sudo command before sudo password prompt appears
+- exclude hsc2hs from build tool deps
+- devel now provides ghc-<pkg>-static
+- drop release from initial changelog entry for packager to add an entry
+- do not try to fetch tarball for a darcs or git source dir
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
