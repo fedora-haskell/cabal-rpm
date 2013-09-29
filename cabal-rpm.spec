@@ -1,7 +1,7 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
 Name:           cabal-rpm
-Version:        0.8.4
+Version:        0.8.5
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
@@ -64,6 +64,10 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Sun Sep 29 2013 Jens Petersen <petersen@redhat.com> - 0.8.5-1
+- fix repoquery when a package update exists for C lib
+- make cblrpm-diff quieter
+
 * Sat Sep 28 2013 Jens Petersen <petersen@redhat.com> - 0.8.4-1
 - use repoquery to determine extra C library dependencies
 - quote "pkgconfig(foo)" for rpm query and yum install
