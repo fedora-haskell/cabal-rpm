@@ -1,7 +1,7 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
 Name:           cabal-rpm
-Version:        0.8.5
+Version:        0.8.6
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
@@ -28,7 +28,7 @@ Requires:       rpm-build
 Requires:       yum-utils
 
 %description
-Cabal-rpm generates RPM packages from Haskell Cabal packages.
+Cabal-rpm generates and builds RPM packages from Haskell Cabal packages.
 
 See <https://github.com/juhp/cabal-rpm/blob/master/NEWS> for latest changes.
 
@@ -64,6 +64,9 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Tue Oct  8 2013 Jens Petersen <petersen@redhat.com> - 0.8.6-1
+- check for _darcs or .git dir in package topdir not pwd
+
 * Sun Sep 29 2013 Jens Petersen <petersen@redhat.com> - 0.8.5-1
 - fix repoquery when a package update exists for C lib
 - make cblrpm-diff quieter
