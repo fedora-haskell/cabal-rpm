@@ -1,7 +1,7 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
 Name:           cabal-rpm
-Version:        0.8.7
+Version:        0.8.8
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
@@ -65,6 +65,17 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Sun Feb  9 2014 Jens Petersen <petersen@redhat.com> - 0.8.8-1
+- use .spec file to determine package if no .cabal file (with or without arg)
+- bugfix: install command now works if some dependencies not packaged
+- bugfix: do not re-copy cached tarball each time
+- use new shorter hackage2 URL for packages
+- filter @ and \ quotes in descriptions
+- capitalize start of summary and description
+- new prep command (like "rpmbuild -bp" or "fedpkg prep")
+- new depends and requires commands list package depends or buildrequires
+- new builddep command (like yum-buildep, but allows missing packages)
+
 * Tue Dec 31 2013 Jens Petersen <petersen@redhat.com> - 0.8.7-1
 - new "install" command wrapping "cabal install"
 - "build" command renamed to "rpm"
