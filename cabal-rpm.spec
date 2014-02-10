@@ -1,7 +1,7 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
 Name:           cabal-rpm
-Version:        0.8.8
+Version:        0.8.9
 Release:        1%{?dist}
 Summary:        RPM package creator for Haskell Cabal-based packages
 
@@ -65,6 +65,10 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Mon Feb 10 2014 Jens Petersen <petersen@redhat.com> - 0.8.9-1
+- bugfix for error handling dir with spec file
+- cblrpm-diff arg is now optional
+
 * Sun Feb  9 2014 Jens Petersen <petersen@redhat.com> - 0.8.8-1
 - use .spec file to determine package if no .cabal file (with or without arg)
 - bugfix: install command now works if some dependencies not packaged
