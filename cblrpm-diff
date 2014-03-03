@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "$0 is deprecated.  Please use 'cblrpm diff' instead"
+echo "This script will be removed in a future update."
+echo
+
+cblrpm diff $*

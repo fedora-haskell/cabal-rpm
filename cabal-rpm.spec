@@ -1,14 +1,16 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
 Name:           cabal-rpm
-Version:        0.8.9
+Version:        0.8.10
 Release:        1%{?dist}
-Summary:        RPM package creator for Haskell Cabal-based packages
+Summary:        RPM packaging tool for Haskell Cabal-based packages
 
 License:        GPLv3+
 URL:            http://hackage.haskell.org/package/%{name}
 Source0:        http://hackage.haskell.org/packages/archive/%{name}/%{version}/%{name}-%{version}.tar.gz
 Source1:        cabal-rpm.1
+Source2:        cblrpm-diff
+
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
@@ -28,9 +30,10 @@ Requires:       rpm-build
 Requires:       yum-utils
 
 %description
-Cabal-rpm generates and builds RPM packages from Haskell Cabal packages,
-and also provides wrapper over "cabal install" for depends.  The tool
-installs available build dependencies using yum.
+Cabal-rpm is a tool for RPM packaging of Haskell Cabal-based packages.
+It interacts with yum to install build dependencies and can also act as
+a cabal-install wrapper installing dependencies packaged in Fedora before
+running "cabal install".
 
 
 %prep
@@ -44,7 +47,7 @@ installs available build dependencies using yum.
 %install
 %ghc_bin_install
 
-install -p cblrpm-diff %{buildroot}%{_bindir}
+install -p %SOURCE2 %{buildroot}%{_bindir}
 install -p -m 0644 -D man/cblrpm.1 %{buildroot}%{_mandir}/man1/cblrpm.1
 install -p -m 0644 %SOURCE1 %{buildroot}%{_mandir}/man1/
 
@@ -65,6 +68,13 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Mon Mar  3 2014 Jens Petersen <petersen@redhat.com> - 0.8.10-1
+- new diff command replaces cblrpm-diff script
+- new missingdeps command
+- should now work on RHEL 5 and 6: dropped use use of rpmspec
+- add a temporary cblrpm-diff compat script
+- refresh description
+
 * Mon Feb 10 2014 Jens Petersen <petersen@redhat.com> - 0.8.9-1
 - bugfix for error handling dir with spec file
 - cblrpm-diff arg is now optional
