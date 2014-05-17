@@ -1,13 +1,16 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
+# no useful debuginfo for Haskell packages without C sources
+%global debug_package %{nil}
+
 Name:           cabal-rpm
-Version:        0.8.10
+Version:        0.8.11
 Release:        1%{?dist}
 Summary:        RPM packaging tool for Haskell Cabal-based packages
 
 License:        GPLv3+
 URL:            http://hackage.haskell.org/package/%{name}
-Source0:        http://hackage.haskell.org/packages/archive/%{name}/%{version}/%{name}-%{version}.tar.gz
+Source0:        http://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{version}.tar.gz
 Source1:        cabal-rpm.1
 Source2:        cblrpm-diff
 
@@ -18,7 +21,6 @@ BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
 BuildRequires:  ghc-old-locale-devel
 BuildRequires:  ghc-process-devel
-BuildRequires:  ghc-regex-compat-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-unix-devel
 # End cabal-rpm deps
@@ -68,6 +70,17 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Sat May 17 2014 Jens Petersen <petersen@redhat.com> - 0.8.11-1
+- use .spec file to determine pkg-ver when no .cabal file around
+- build command renamed again from "rpm" to "local" (like fedpkg)
+- automatically generate bcond for %check and add testsuite BRs
+  when testsuites available
+- disable debuginfo explicitly when no c-sources in preparation for
+  ghc-rpm-macros no longer disabling debuginfo
+- reset filemode of downloaded hackage tarballs to 0644:
+  workaround for cabal-install setting 0600
+- include release again in initial changelog
+
 * Mon Mar  3 2014 Jens Petersen <petersen@redhat.com> - 0.8.10-1
 - new diff command replaces cblrpm-diff script
 - new missingdeps command
