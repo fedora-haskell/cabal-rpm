@@ -1,11 +1,14 @@
 # https://fedoraproject.org/wiki/Packaging:Haskell
 
+%global ghc_without_dynamic 1
+
 # no useful debuginfo for Haskell packages without C sources
 %global debug_package %{nil}
 
 Name:           cabal-rpm
 Version:        0.8.11
 Release:        1%{?dist}
+Epoch:          1
 Summary:        RPM packaging tool for Haskell Cabal-based packages
 
 License:        GPLv3+
@@ -70,6 +73,10 @@ ln -s cblrpm-diff %{buildroot}%{_bindir}/%{name}-diff
 
 
 %changelog
+* Tue Jun 17 2014 Jens Petersen <petersen@redhat.com> - 1:0.8.11-1
+- bump epoch
+- link haskell statically for portability
+
 * Sat May 17 2014 Jens Petersen <petersen@redhat.com> - 0.8.11-1
 - use .spec file to determine pkg-ver when no .cabal file around
 - build command renamed again from "rpm" to "local" (like fedpkg)
